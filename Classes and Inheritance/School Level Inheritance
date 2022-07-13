@@ -1,0 +1,57 @@
+class School{
+  constructor(name,level,numberOfStudents){
+    this._name = name
+    this._level = level
+    this._numberOfStudents = numberOfStudents
+  }
+
+  get name(){
+    return this._name
+  }
+  get level(){
+    return this._level
+  }
+  get numberOfStudents(){
+    return this._numberOfStudents
+  }
+  set numberOfStudents(num){
+    (typeof num === 'number')?this._numberOfStudents = num:console.log('Not a number')
+  }
+  static pickSubstituteTeacher(sub){
+    let rand = Math.floor(Math.random()* (sub.length))
+    return sub[rand]
+  }
+  quickFacts(){
+    console.log(`${this._name} educates ${this._numberOfStudents} students at the ${this._level} school level.`)
+  }
+}
+
+class Primary extends School{
+  constructor(name,numberOfStudents,pickupPolicy,level='Primary'){
+    super(name,level,numberOfStudents)
+    this._pickupPolicy = pickupPolicy
+  }
+}
+
+class Middle extends School{
+  constructor(name,numberOfStudents,pickupPolicy,level='Middle'){
+    super(name,level,numberOfStudents)
+    
+  }
+}
+
+class High extends School{
+  constructor(name,numberOfStudents,pickupPolicy,sportsTeams,level='High'){
+    super(name,level,numberOfStudents)
+    this._sportsTeams = sportsTeams
+  }
+}
+
+const Bloomindale = new High(
+  'Bloomindale',
+  47,
+  'After 3:30pm',
+  'Blue Hawks'
+)
+Bloomindale.quickFacts()
+console.log(School.pickSubstituteTeacher(['Jack','John','Jill']))
